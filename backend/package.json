@@ -10,6 +10,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "start": "node /dist/server.js",
+    "postinstall": "tsc --outDir dist",
     "dev": "ts-node-dev --respawn --pretty --transpile-only server.ts",
     "typeorm:cli": "./node_modules/.bin/typeorm "
   },
