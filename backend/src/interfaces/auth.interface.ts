@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { User } from "../entities/user.entity.ts";
+import { User } from "../entities/user.entity";
 
 export interface TokenData {
   token: string;

@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Event } from "./event.entity.ts";
-import { User } from "./user.entity.ts";
+import { Event } from "./event.entity";
+import { User } from "./user.entity";
 
 @Entity()
 export class Category {

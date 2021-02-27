@@ -5,17 +5,18 @@ import {
   Like,
   ObjectLiteral,
 } from "typeorm";
-import { Pagination } from "../common/pagination.ts";
-import { OrderDto } from "../dto/order.dto.ts";
-import { Order, Status } from "../entities/order.entity.ts";
-import { RequestWithUser } from "../interfaces/auth.interface.ts";
+import { Pagination } from "../common/pagination";
+import { OrderDto } from "../dto/order.dto";
+import { Order, Status } from "../entities/order.entity";
+import { RequestWithUser } from "../interfaces/auth.interface";
 import Controller, {
   AppResponse,
   PaginateResponse,
-} from "../interfaces/controller.interface.ts";
-import { ParamsQuery } from "../interfaces/params.interface.ts";
+} from "../interfaces/controller.interface";
+import { ParamsQuery } from "../interfaces/params.interface";
 import moment from "moment";
-import { Event } from "../entities/event.entity.ts";
+import { Event } from "../entities/event.entity";
+import EventController from "./event.controller";
 
 export default class OrderController implements Controller<Order> {
   private repository = getRepository(Order);

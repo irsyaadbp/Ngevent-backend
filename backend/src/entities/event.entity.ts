@@ -11,8 +11,8 @@ import {
   RelationId,
   UpdateDateColumn,
 } from "typeorm";
-import { Category } from "./category.entity.ts";
-import { Order } from "./order.entity.ts";
+import { Category } from "./category.entity";
+import { Order } from "./order.entity";
 
 @Entity()
 export class Event {

@@ -1,7 +1,8 @@
 import express from "express";
-import IRouter from "../interfaces/router.interface.ts";
-import authMiddleware from "../middleware/auth.middleware.ts";
-import CategoryController from "../controllers/category.controller.ts";
+import IRouter from "../interfaces/router.interface";
+import { AuthController } from "../controllers/auth.controller";
+import authMiddleware from "../middleware/auth.middleware";
+import CategoryController from "../controllers/category.controller";
 
 export default class CategoryRouter implements IRouter {
   path: string = "categories";

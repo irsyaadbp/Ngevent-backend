@@ -1,8 +1,8 @@
 import express from "express";
-import EventController from "../controllers/event.controller.ts";
-import IRouter from "../interfaces/router.interface.ts";
-import authMiddleware from "../middleware/auth.middleware.ts";
-import { formMiddleware } from "../middleware/form.middleware.ts";
+import EventController from "../controllers/event.controller";
+import IRouter from "../interfaces/router.interface";
+import authMiddleware from "../middleware/auth.middleware";
+import { formMiddleware } from "../middleware/form.middleware";
 
 export default class EventRouter implements IRouter {
   path: string = "events";

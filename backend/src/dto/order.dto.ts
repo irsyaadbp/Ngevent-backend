@@ -1,5 +1,5 @@
 import { IsNumber, IsOptional, IsString } from "class-validator";
-import { Status } from "../entities/order.entity.ts";
+import { Status } from "../entities/order.entity";
 
 export class OrderDto {
   @IsOptional()

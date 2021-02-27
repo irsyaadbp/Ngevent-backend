@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import JWT from "jsonwebtoken";
 import { getRepository } from "typeorm";
-import { User } from "../entities/user.entity.ts";
+import { User } from "../entities/user.entity";
 import {
   DataStoredInToken,
   RequestWithUser,
