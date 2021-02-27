@@ -1,5 +1,5 @@
-import { Request, RequestHandler, Response } from "express";
-import { RequestWithUser } from "./auth.interface";
+import { Response } from "express";
+import { RequestWithUser } from "./auth.interface.ts";
 
 export default interface Controller<T> {
   getAll: (req: RequestWithUser, res: Response) => Promise<PaginateResponse<T>>;

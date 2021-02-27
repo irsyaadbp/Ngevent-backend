@@ -1,7 +1,7 @@
 import express from "express";
-import IRouter from "../interfaces/router.interface";
-import { AuthController } from "../controllers/auth.controller";
-import authMiddleware from "../middleware/auth.middleware";
+import IRouter from "../interfaces/router.interface.ts";
+import { AuthController } from "../controllers/auth.controller.ts";
+import authMiddleware from "../middleware/auth.middleware.ts";
 
 export default class AuthRouter implements IRouter {
   path: string = "auth";

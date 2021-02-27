@@ -5,12 +5,11 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Category } from "./category.entity";
-import { Order } from "./order.entity";
+import { Category } from "./category.entity.ts";
+import { Order } from "./order.entity.ts";
 
 export enum Role {
   USER = "user",

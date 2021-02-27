@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsString,
 } from "class-validator";
-import { Role } from "../entities/user.entity";
+import { Role } from "../entities/user.entity.ts";
 
 export class RegisterDto {
   @IsEmail()

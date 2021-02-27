@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express";
 import multer from "multer";
-import { RequestWithUser } from "../interfaces/auth.interface";
+import { RequestWithUser } from "../interfaces/auth.interface.ts";
 import moment from "moment";
 
 const storage = multer.diskStorage({

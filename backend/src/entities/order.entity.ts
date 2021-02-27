@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Event } from "./event.entity";
-import { User } from "./user.entity";
+import { Event } from "./event.entity.ts";
+import { User } from "./user.entity.ts";
 
 export enum Status {
   BOOKED = "Booked",

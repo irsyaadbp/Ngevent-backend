@@ -12,8 +12,9 @@
   "type": "module",
   "scripts": {
     "start": "node --es-module-specifier-resolution=node ./dist/server.js",
-    "postinstall": "rm -rf dist/ && tsc",
-    "dev": "ts-node-dev --respawn --pretty --transpile-only server.ts",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only ./src/server.ts",
+    "test": "ts-node ./src/server.ts",
+    "dev:nodemon": "tsc && nodemon ./dist/server.js",
     "typeorm:cli": "./node_modules/.bin/typeorm "
   },
   "dependencies": {

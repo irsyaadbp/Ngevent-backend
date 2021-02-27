@@ -1,7 +1,7 @@
-import IRouter from "../interfaces/router.interface";
+import IRouter from "../interfaces/router.interface.ts";
 import express from "express";
-import authMiddleware from "../middleware/auth.middleware";
-import OrderController from "../controllers/order.controller";
+import authMiddleware from "../middleware/auth.middleware.ts";
+import OrderController from "../controllers/order.controller.ts";
 
 export default class OrderRouter implements IRouter {
   path: string = "orders";
