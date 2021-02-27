@@ -51,6 +51,7 @@ export class AuthController {
 
     res.json({
       success: true,
+      message: "Register sucess",
       data: dataUser,
     });
   };
@@ -76,6 +77,7 @@ export class AuthController {
         });
         res.json({
           success: true,
+          message: "Login sucess",
           data: dataUser,
         });
       } else {
