@@ -26,7 +26,7 @@ export class AuthController {
 
       return;
     }
-    const isUsernameExist = await this.isExist("username", data.email);
+    const isUsernameExist = await this.isExist("username", data.username);
 
     if (isUsernameExist) {
       res.json({
