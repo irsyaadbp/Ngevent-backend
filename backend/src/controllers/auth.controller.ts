@@ -4,7 +4,11 @@ import { LoginDto, RegisterDto } from "../dto/auth.dto";
 import { User } from "../entities/user.entity";
 import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
-import { DataStoredInToken, TokenData } from "../interfaces/auth.interface";
+import {
+  DataStoredInToken,
+  RequestWithUser,
+  TokenData,
+} from "../interfaces/auth.interface";
 
 export class AuthController {
   private repository = getRepository(User);
@@ -86,6 +90,18 @@ export class AuthController {
         message: "Username not found",
       });
     }
+  };
+
+  public logout = async (req: RequestWithUser, res: Response) => {
+    res
+      .clearCookie("token", {
+        httpOnly: true,
+        path: "/api",
+      })
+      .json({
+        success: true,
+        message: "Logout success",
+      });
   };
 
   private createToken(user: User): TokenData {

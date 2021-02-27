@@ -1,6 +1,7 @@
 import express from "express";
 import IRouter from "../interfaces/router.interface";
 import { AuthController } from "../controllers/auth.controller";
+import authMiddleware from "../middleware/auth.middleware";
 
 export default class AuthRouter implements IRouter {
   path: string = "auth";
@@ -14,5 +15,6 @@ export default class AuthRouter implements IRouter {
     const controller = new AuthController();
     this.router.post("/register", controller.register);
     this.router.post("/login", controller.login);
+    this.router.post("/logout", authMiddleware, controller.logout);
   }
 }
