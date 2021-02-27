@@ -1,10 +1,11 @@
-import express, { Request, Response, Router } from "express";
+import dotenv from "dotenv";
+import express, { Request, Response } from "express";
 import helmet from "helmet";
 import cors from "cors";
 import AuthRouter from "../routes/auth.routes";
 import { errorHandler } from "../middleware/error.middleware";
 import IRouter from "../interfaces/router.interface";
-import { Connection, createConnection, ConnectionOptions } from "typeorm";
+import { Connection, createConnection } from "typeorm";
 import cookieParser from "cookie-parser";
 import CategoryRouter from "../routes/category.routes";
 import EventRouter from "../routes/event.routes";
@@ -15,6 +16,7 @@ class App {
   public app: express.Application;
 
   constructor() {
+    dotenv.config();
     this.app = express();
     this.config();
 

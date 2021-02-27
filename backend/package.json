@@ -43,7 +43,6 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/multer": "^1.4.5",
     "@types/node": "^14.14.31",
-    "nodemon": "^2.0.7",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.2"
   }
