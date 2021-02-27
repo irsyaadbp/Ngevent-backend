@@ -1,0 +1,23 @@
+{
+  "name": "default",
+  "type": "postgres",
+  "url": "postgres://dapbqhyambpuag:5ac13c402c87cbda8604fc3a7f3e4f7c4af49b1a27b2c66ca961a088f2505bbc@ec2-54-87-34-201.compute-1.amazonaws.com:5432/d1qb42q3rc2l63",
+  "port": 5432,
+  "username": "dapbqhyambpuag",
+  "password": "5ac13c402c87cbda8604fc3a7f3e4f7c4af49b1a27b2c66ca961a088f2505bbc",
+  "database": "d1qb42q3rc2l63",
+  "ssl": true,
+  "extra": {
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  },
+  "synchronize": true,
+  "logging": false,
+  "entities": ["src/entities/*.entity{.ts,.js}"],
+  "migrations": ["src/migrations/*.migration{.ts,.js}"],
+  "cli": {
+    "entitiesDir": "src/entities",
+    "migrationsDir": "src/migrations"
+  }
+}
