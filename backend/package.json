@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "private": false,
+  "type": "module",
   "scripts": {
     "start": "node ./dist/server.js",
     "postinstall": "tsc --outDir dist",
