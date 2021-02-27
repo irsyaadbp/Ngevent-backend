@@ -1,7 +1,9 @@
 node_modules/
 dist/
+.vscode
 
 .env*
 !.env.example
 
 ormconfig.json
+*.lock
