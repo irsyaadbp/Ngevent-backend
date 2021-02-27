@@ -11,8 +11,8 @@
   "private": false,
   "type": "module",
   "scripts": {
-    "start": "node ./dist/server.js",
-    "postinstall": "rm -rf dist/ && tsc --outDir dist",
+    "start": "node --es-module-specifier-resolution=node ./dist/server.js",
+    "postinstall": "rm -rf dist/ && tsc",
     "dev": "ts-node-dev --respawn --pretty --transpile-only server.ts",
     "typeorm:cli": "./node_modules/.bin/typeorm "
   },
