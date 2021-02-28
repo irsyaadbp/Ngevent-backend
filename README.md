@@ -8,6 +8,7 @@ see the <a href="https://ngevent-app.herokuapp.com/api">demo here</a>
 2. Express
 4. TypeORM
 5. PostgreSQL
+6. Cloudinary
 
 ## Setup
 1. Clone this repository
