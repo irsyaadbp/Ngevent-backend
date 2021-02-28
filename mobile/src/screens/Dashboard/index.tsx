@@ -50,9 +50,6 @@ const Dashboard: React.FC = () => {
         tabBarOptions={{
           activeTintColor: '#000',
           inactiveTintColor: '#9c9c9c',
-          tabStyle: {
-            ...globalStyles.shadow,
-          },
         }}>
         <Tabs.Screen
           name="Home"

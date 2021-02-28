@@ -1,19 +1,16 @@
-import theme from '@ngevent/styles/theme';
+import {CarouselHome, Upcoming} from '@ngevent/components/Home';
+import theme, {globalStyles} from '@ngevent/styles/theme';
 import * as React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {Text} from 'react-native-paper';
 
 const Home: React.FC = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: theme.colors.background,
-      }}>
-      <Text>Home</Text>
-    </View>
+    <ScrollView contentContainerStyle={globalStyles.scrollWhite}>
+      <Text style={globalStyles.titlePageLarge}>Home</Text>
+      <CarouselHome />
+      <Upcoming />
+    </ScrollView>
   );
 };
 

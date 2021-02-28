@@ -5,11 +5,10 @@ export type ResponseType<T> = {
 };
 
 type Pagination = {
-  page: number;
-  count: 2;
-  currentPage: 1;
-  perPage: 10;
-  allPage: 1;
+  count: number;
+  currentPage: number;
+  perPage: number;
+  allPage: number;
 };
 
 export type ResponsePaginationType<T> = ResponseType<T> & Pagination;

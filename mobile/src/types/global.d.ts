@@ -11,6 +11,7 @@ declare global {
       dangerLight: string;
       warningLight: string;
       gray: string;
+      grayLight: string;
       [key: string]: string;
     }
   }
