@@ -79,7 +79,7 @@ export default class EventController implements Controller<Event> {
 
       return res.json({
         success: true,
-        message: count > 0 ? "Success get all data" : "Data empty",
+        message: count > 0 ? "Success get all event data" : "Data empty",
         count: count,
         currentPage: page,
         perPage: limit,
