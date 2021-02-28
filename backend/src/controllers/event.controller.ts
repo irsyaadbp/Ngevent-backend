@@ -18,6 +18,7 @@ import Controller, {
 import { ParamsQuery } from "../interfaces/params.interface";
 import { EventDto } from "../dto/event.dto";
 import Upload from "../common/upload";
+import moment from "moment";
 
 export default class EventController implements Controller<Event> {
   private repository = getRepository(Event);
@@ -57,6 +58,8 @@ export default class EventController implements Controller<Event> {
           ...whereParam,
           event_date: Between(params.startDate, params.endDate),
         };
+      } else {
+        whereParam.event_date = MoreThanOrEqual(moment().toISOString());
       }
 
       if (params.priceStart && params.priceEnd) {
