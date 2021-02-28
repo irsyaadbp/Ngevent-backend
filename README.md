@@ -1,6 +1,8 @@
 # Ngevent-backend
 Backend for Ngevent apps
 
+**(This project will be updated continuously)**
+
 ## Build With
 1. Typescript
 2. Express
