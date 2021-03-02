@@ -34,7 +34,7 @@ export class User {
   @Column()
   fullname!: string;
 
-  @Column()
+  @Column({ default: null })
   avatar!: string;
 
   @Column({
