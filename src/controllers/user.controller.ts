@@ -1,9 +1,7 @@
-import { response } from "express";
 import { getRepository, Like } from "typeorm";
 import EncryptData from "../common/encrypt";
 import { Pagination } from "../common/pagination";
 import Upload from "../common/upload";
-import { RegisterDto } from "../dto/auth.dto";
 import {
   ChangeAvatarDto,
   ChangePasswordDto,
