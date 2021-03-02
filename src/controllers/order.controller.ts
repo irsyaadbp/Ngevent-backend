@@ -126,17 +126,25 @@ export default class OrderController implements Controller<Order> {
       });
 
       if (eventById?.id) {
-        const newOrder = await this.repository.save({
-          ...data,
-          order_number: orderNumber,
-          user_id: req.user?.id,
-          event_date: eventById.event_date,
-        });
+        // check tickets if they are still available
+        if (eventById.total_ticket - eventById.sold_ticket > 0) {
+          const newOrder = await this.repository.save({
+            ...data,
+            order_number: orderNumber,
+            user_id: req.user?.id,
+            event_date: eventById.event_date,
+          });
+
+          return res.json({
+            success: true,
+            message: "Order created",
+            data: newOrder,
+          });
+        }
 
         return res.json({
-          success: true,
-          message: "Order created",
-          data: newOrder,
+          success: false,
+          message: "Ticket sold out",
         });
       } else {
         return res.json({

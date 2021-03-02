@@ -40,6 +40,12 @@ export class Event {
   @Column({ type: "decimal", precision: 4, scale: 2, default: 0 })
   ticket_price!: number;
 
+  @Column({ default: 0 })
+  total_ticket!: number;
+
+  @Column({ default: 0 })
+  sold_ticket!: number;
+
   @ManyToOne(() => Category, (cat) => cat.events)
   @JoinColumn({ name: "category_id" })
   category!: Category;
