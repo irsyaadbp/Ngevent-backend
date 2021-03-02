@@ -34,6 +34,9 @@ export class User {
   @Column()
   fullname!: string;
 
+  @Column()
+  avatar!: string;
+
   @Column({
     type: "enum",
     enum: Role,

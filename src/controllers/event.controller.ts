@@ -29,9 +29,10 @@ export default class EventController implements Controller<Event> {
   ) => {
     try {
       const params: ParamsQuery & {
-        category_id?: number;
+        categoryId?: number;
         priceStart?: number;
         priceEnd?: number;
+        withExpired?: 1 | 0;
       } = req.query;
 
       const pagination = new Pagination().pagination(params);
@@ -49,8 +50,8 @@ export default class EventController implements Controller<Event> {
         | FindConditions<Event>[]
         | undefined = { event_name: Like("%" + (params.search || "") + "%") };
 
-      if (params.category_id) {
-        whereParam.category_id = params.category_id;
+      if (params.categoryId) {
+        whereParam.category_id = params.categoryId;
       }
 
       if (params.startDate && params.endDate) {
@@ -58,7 +59,7 @@ export default class EventController implements Controller<Event> {
           ...whereParam,
           event_date: Between(params.startDate, params.endDate),
         };
-      } else {
+      } else if (!params.withExpired) {
         whereParam.event_date = MoreThanOrEqual(moment().toISOString());
       }
 
@@ -101,18 +102,18 @@ export default class EventController implements Controller<Event> {
       const params: { id?: number } = req.params;
 
       if (params.id) {
-        const category = await this.repository.findOne(
+        const event = await this.repository.findOne(
           {
             id: params.id,
           },
           { relations: ["category"] }
         );
 
-        if (category?.id) {
+        if (event?.id) {
           return res.json({
             success: true,
             message: "Success get event",
-            data: category,
+            data: event,
           });
         } else {
           return res.json({

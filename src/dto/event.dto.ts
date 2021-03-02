@@ -30,6 +30,9 @@ export class EventDto {
   @IsNumber()
   category_id!: number;
 
+  @IsNumber()
+  total_ticket!: number;
+
   @IsNumber({ maxDecimalPlaces: 2 })
   ticket_price!: number;
 }

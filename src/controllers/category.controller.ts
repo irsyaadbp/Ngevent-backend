@@ -117,6 +117,7 @@ export default class CategoryController implements Controller<Category> {
       });
     }
   };
+
   public update = async (req: RequestWithUser, res: AppResponse<Category>) => {
     try {
       const { id, ...data }: CategoryDto = req.body;
