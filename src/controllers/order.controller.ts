@@ -134,36 +134,44 @@ export default class OrderController implements Controller<Order> {
         if (eventDate.isAfter(today)) {
           // check tickets if they are still available
           if (eventById.total_ticket - eventById.sold_ticket > 0) {
-            // check total price must be valid
-            if (
-              eventById.ticket_price * Number(data.qty) ===
-              Number(data.total_price)
-            ) {
-              const newOrder = await this.repository.save({
-                ...data,
-                order_number: orderNumber,
-                user_id: req.user?.id,
-                event_date: eventById.event_date,
-              });
+            const newSoldOut = Number(eventById.sold_ticket) + Number(data.qty);
+            if (newSoldOut <= eventById.total_ticket) {
+              // check total price must be valid
+              if (
+                eventById.ticket_price * Number(data.qty) ===
+                Number(data.total_price)
+              ) {
+                const newOrder = await this.repository.save({
+                  ...data,
+                  order_number: orderNumber,
+                  user_id: req.user?.id,
+                  event_date: eventById.event_date,
+                });
 
-              await eventRepository.update(
-                { id: eventById.id },
-                {
-                  sold_ticket: Number(eventById.sold_ticket) + Number(data.qty),
-                }
-              );
+                await eventRepository.update(
+                  { id: eventById.id },
+                  {
+                    sold_ticket: newSoldOut,
+                  }
+                );
+
+                return res.json({
+                  success: true,
+                  message: "Order created",
+                  data: newOrder,
+                });
+              }
 
               return res.json({
-                success: true,
-                message: "Order created",
-                data: newOrder,
+                success: false,
+                message: "Total price not valid",
+              });
+            } else {
+              return res.json({
+                success: false,
+                message: "Ticket qty not enough",
               });
             }
-
-            return res.json({
-              success: false,
-              message: "Total price not valid",
-            });
           }
 
           return res.json({
