@@ -37,7 +37,7 @@ export class Event {
   @Column()
   category_id!: number;
 
-  @Column({ type: "decimal", precision: 4, scale: 2, default: 0 })
+  @Column({ type: "decimal", precision: 10, scale: 2, default: 0 })
   ticket_price!: number;
 
   @Column({ default: 0 })

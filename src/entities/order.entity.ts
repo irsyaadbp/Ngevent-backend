@@ -33,7 +33,7 @@ export class Order {
   @Column()
   qty!: number;
 
-  @Column({ type: "decimal", precision: 4, scale: 2, default: 0 })
+  @Column({ type: "decimal", precision: 10, scale: 2, default: 0 })
   total_price!: number;
 
   @Column()
