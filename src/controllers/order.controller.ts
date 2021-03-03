@@ -134,22 +134,29 @@ export default class OrderController implements Controller<Order> {
         if (eventDate.isAfter(today)) {
           // check tickets if they are still available
           if (eventById.total_ticket - eventById.sold_ticket > 0) {
-            const newOrder = await this.repository.save({
-              ...data,
-              order_number: orderNumber,
-              user_id: req.user?.id,
-              event_date: eventById.event_date,
-            });
+            if (eventById.ticket_price * data.qty === data.total_price) {
+              const newOrder = await this.repository.save({
+                ...data,
+                order_number: orderNumber,
+                user_id: req.user?.id,
+                event_date: eventById.event_date,
+              });
 
-            await eventRepository.update(
-              { id: eventById.id },
-              { sold_ticket: eventById.sold_ticket + data.qty }
-            );
+              await eventRepository.update(
+                { id: eventById.id },
+                { sold_ticket: eventById.sold_ticket + data.qty }
+              );
+
+              return res.json({
+                success: true,
+                message: "Order created",
+                data: newOrder,
+              });
+            }
 
             return res.json({
-              success: true,
-              message: "Order created",
-              data: newOrder,
+              success: false,
+              message: "Total price not valid",
             });
           }
 
