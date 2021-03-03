@@ -120,31 +120,48 @@ export default class OrderController implements Controller<Order> {
       const { id, ...data }: OrderDto = req.body;
 
       const orderNumber = moment().format("DDMMYYYY-HHmmss");
+      const eventRepository = getRepository(Event);
 
-      const eventById = await getRepository(Event).findOne({
+      const eventById = await eventRepository.findOne({
         id: data.event_id,
       });
 
       if (eventById?.id) {
-        // check tickets if they are still available
-        if (eventById.total_ticket - eventById.sold_ticket > 0) {
-          const newOrder = await this.repository.save({
-            ...data,
-            order_number: orderNumber,
-            user_id: req.user?.id,
-            event_date: eventById.event_date,
-          });
+        const eventDate = moment(eventById.event_date);
+        const today = moment();
+
+        // check event date is valid
+        if (eventDate.isAfter(today)) {
+          // check tickets if they are still available
+          if (eventById.total_ticket - eventById.sold_ticket > 0) {
+            const newOrder = await this.repository.save({
+              ...data,
+              order_number: orderNumber,
+              user_id: req.user?.id,
+              event_date: eventById.event_date,
+            });
+
+            await eventRepository.update(
+              { id: eventById.id },
+              { sold_ticket: eventById.sold_ticket + data.qty }
+            );
+
+            return res.json({
+              success: true,
+              message: "Order created",
+              data: newOrder,
+            });
+          }
 
           return res.json({
-            success: true,
-            message: "Order created",
-            data: newOrder,
+            success: false,
+            message: "Ticket sold out",
           });
         }
 
         return res.json({
           success: false,
-          message: "Ticket sold out",
+          message: "The event date is no longer valid",
         });
       } else {
         return res.json({
