@@ -56,7 +56,7 @@ export default class OrderController implements Controller<Order> {
 
       const [allOrder, count] = await this.repository.findAndCount({
         where: whereParam,
-        relations: ["event"],
+        relations: ["event", "event.category"],
         order: { [sortBy]: orderBy },
         take: limit,
         skip: offset,
@@ -148,7 +148,9 @@ export default class OrderController implements Controller<Order> {
 
               await eventRepository.update(
                 { id: eventById.id },
-                { sold_ticket: eventById.sold_ticket + data.qty }
+                {
+                  sold_ticket: Number(eventById.sold_ticket) + Number(data.qty),
+                }
               );
 
               return res.json({
