@@ -6,7 +6,6 @@ import AuthRouter from "../routes/auth.routes";
 import { errorHandler } from "../middleware/error.middleware";
 import IRouter from "../interfaces/router.interface";
 import { Connection, createConnection } from "typeorm";
-import cookieParser from "cookie-parser";
 import CategoryRouter from "../routes/category.routes";
 import EventRouter from "../routes/event.routes";
 import OrderRouter from "../routes/order.routes";
@@ -37,7 +36,6 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(errorHandler);
-    this.app.use(cookieParser());
   }
 
   private async initOrm(): Promise<Connection> {

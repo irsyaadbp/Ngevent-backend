@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { LoginDto, RegisterDto } from "../dto/auth.dto";
 import { User } from "../entities/user.entity";
-import { RequestWithUser } from "../interfaces/auth.interface";
 import EncryptData from "../common/encrypt";
 
 export class AuthController {
@@ -35,7 +34,6 @@ export class AuthController {
 
     const encryptPassword = await this.encryptData.encrypt(data.password);
     const newData = { ...data, password: encryptPassword };
-    // const newUser = this.repository.create(newData);
     const newUser = await this.repository.save(newData);
 
     const { password, ...dataUser } = newUser;
@@ -48,7 +46,7 @@ export class AuthController {
     res.json({
       success: true,
       message: "Register sucess",
-      data: dataUser,
+      data: { ...dataUser, token: tokenData.token },
     });
   };
 
@@ -67,14 +65,10 @@ export class AuthController {
         const { password, ...dataUser } = getUser;
         const tokenData = this.encryptData.createJWT(getUser);
 
-        res.cookie("token", tokenData.token, {
-          httpOnly: true,
-          path: "/api",
-        });
         res.json({
           success: true,
           message: "Login sucess",
-          data: dataUser,
+          data: { ...dataUser, token: tokenData.token },
         });
       } else {
         res.json({
@@ -88,18 +82,6 @@ export class AuthController {
         message: "Username not found",
       });
     }
-  };
-
-  public logout = async (_: RequestWithUser, res: Response) => {
-    res
-      .clearCookie("token", {
-        httpOnly: true,
-        path: "/api",
-      })
-      .json({
-        success: true,
-        message: "Logout success",
-      });
   };
 
   private isExist = async (column: string, value: string) => {

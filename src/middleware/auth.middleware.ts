@@ -12,13 +12,14 @@ async function authMiddleware(
   res: Response,
   next: NextFunction
 ) {
-  const cookies = req.cookies;
+  const auth = req.headers.authorization;
 
-  if (cookies && cookies.token) {
-    const secret = process.env.JWT_SECRET_KEY || "SECRET_KEY";
+  if (auth) {
     try {
+      const secret = process.env.JWT_SECRET_KEY || "SECRET_KEY";
+      const token = (auth as string).split("Bearer ")[1];
       const verificationResponse = JWT.verify(
-        cookies.token,
+        token,
         secret
       ) as DataStoredInToken;
       const id = verificationResponse.id;

@@ -15,6 +15,5 @@ export default class AuthRouter implements IRouter {
     const controller = new AuthController();
     this.router.post("/register", controller.register);
     this.router.post("/login", controller.login);
-    this.router.post("/logout", authMiddleware, controller.logout);
   }
 }
