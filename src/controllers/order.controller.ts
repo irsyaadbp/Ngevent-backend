@@ -134,6 +134,7 @@ export default class OrderController implements Controller<Order> {
         if (eventDate.isAfter(today)) {
           // check tickets if they are still available
           if (eventById.total_ticket - eventById.sold_ticket > 0) {
+            // check total price must be valid
             if (eventById.ticket_price * data.qty === data.total_price) {
               const newOrder = await this.repository.save({
                 ...data,
